@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Chatkit from "@pusher/chatkit";
+import MessageList from "../components/MessageList";
+import RoomList from "../components/RoomList";
 import { Wrapper } from "../theme/index.js";
 import { tokenUrl, instanceLocator } from "../config.js";
 
@@ -40,7 +42,8 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <h1>Hi</h1>
+        <RoomList />
+        <MessageList />
       </Wrapper>
     );
   }

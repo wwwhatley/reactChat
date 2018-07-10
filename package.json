@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@pusher/chatkit": "^0.7.16",
+    "normalize.css": "^8.0.0",
     "npm": "^6.1.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
