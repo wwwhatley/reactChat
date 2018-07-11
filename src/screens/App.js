@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Chatkit from "@pusher/chatkit";
 import MessageList from "../components/MessageList";
+import SendMessageForm from "../components/SendMessageForm";
 import RoomList from "../components/RoomList";
 import { Wrapper } from "../theme/index.js";
 import { tokenUrl, instanceLocator } from "../config.js";
@@ -27,11 +28,13 @@ class App extends Component {
       console.log(currentUser);
 
       currentUser.subscribeToRoom({
-        roomId: 9434230,
+        roomId: 11291549,
         hooks: {
           onNewMessage: message => {
-            this.setState({
-              messages: [...this.state.messages, message]
+            this.setState(() => {
+              return {
+                messages: [...this.state.messages, message]
+              };
             });
           }
         }
@@ -43,7 +46,8 @@ class App extends Component {
     return (
       <Wrapper>
         <RoomList />
-        <MessageList />
+        <MessageList messages={this.state.messages} />
+        <SendMessageForm />
       </Wrapper>
     );
   }

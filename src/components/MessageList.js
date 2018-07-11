@@ -9,30 +9,14 @@ const Div = styled.div`
   width: 100%;
   height: 100%;
   overflow: scroll;
-  background: var(--secondary-color);
 `;
 
-const dummy = [
-  {
-    userId: "wwwhatley",
-    text: "Hi"
-  },
-  {
-    userId: "wwwhatley",
-    text: "Hello"
-  },
-  {
-    userId: "wwwhatley",
-    text: "LFjasdlkfjasdlkfjasdlkfjasdlkfjasflkjasdflkasdjfsadlkfj"
-  }
-];
-
-export default function MessageList() {
+export default function MessageList({ messages }) {
   return (
     <Div>
-      {dummy.map((message, index) => {
+      {messages.map((message, index) => {
         return (
-          <Message key={index} userid={message.userId} text={message.text} />
+          <Message key={index} userid={message.senderId} text={message.text} />
         );
       })}
     </Div>
