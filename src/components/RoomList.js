@@ -10,14 +10,15 @@ const Div = styled.div`
   height: 100%;
 `;
 
-class RoomList extends React.Component {
-  render() {
-    return (
-      <Div>
-        <div>RoomList</div>
-      </Div>
-    );
-  }
+export default function RoomList({ rooms }) {
+  return (
+    <Div>
+      <h1>Room List</h1>
+      <ul>
+        {rooms.map((room, index) => {
+          return <li key={index}>{room.name}</li>;
+        })}
+      </ul>
+    </Div>
+  );
 }
-
-export default RoomList;

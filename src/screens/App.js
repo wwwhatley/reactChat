@@ -4,6 +4,7 @@ import Chatkit from "@pusher/chatkit";
 import MessageList from "../components/MessageList";
 import SendMessageForm from "../components/SendMessageForm";
 import RoomList from "../components/RoomList";
+import NewRoomForm from "../components/NewRoomForm";
 import { Wrapper } from "../theme/index.js";
 import { tokenUrl, instanceLocator } from "../config.js";
 
@@ -11,8 +12,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: []
+      messages: [],
+      joinableRooms: [],
+      joinedRooms: []
     };
+    this.sendMessage = this.sendMessage.bind(this);
+    this.createRoom = this.createRoom.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +30,18 @@ class App extends Component {
     });
 
     chatManager.connect().then(currentUser => {
-      console.log(currentUser);
+      this.currentUser = currentUser;
+      currentUser
+        .getJoinableRooms()
+        .then(joinableRooms => {
+          this.setState({
+            joinableRooms,
+            joinedRooms: this.currentUser.rooms
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
 
       currentUser.subscribeToRoom({
         roomId: 11291549,
@@ -42,12 +58,29 @@ class App extends Component {
     });
   }
 
+  createRoom(name) {
+    this.currentUser.createRoom({
+      name,
+      creatorId: "wwwhatley"
+    });
+  }
+
+  sendMessage(text) {
+    this.currentUser.sendMessage({
+      text,
+      roomId: 11291549
+    });
+  }
+
   render() {
     return (
       <Wrapper>
-        <RoomList />
+        <RoomList
+          rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
+        />
         <MessageList messages={this.state.messages} />
-        <SendMessageForm />
+        <NewRoomForm createroom={this.createRoom} />
+        <SendMessageForm sendmessage={this.sendMessage} />
       </Wrapper>
     );
   }

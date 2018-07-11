@@ -26,10 +26,10 @@ const Input = styled.input`
 class SendMessageForm extends Component {
   constructor(props) {
     super(props);
-    (this.state = {
+    this.state = {
       val: ""
-    }),
-      (this.handleChange = this.handleChange.bind(this));
+    };
+    this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -44,6 +44,12 @@ class SendMessageForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    this.props.sendmessage(this.state.val);
+    this.setState(() => {
+      return {
+        val: ""
+      };
+    });
   }
 
   render() {
