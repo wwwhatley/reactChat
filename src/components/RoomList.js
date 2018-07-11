@@ -20,7 +20,7 @@ const I = styled.i`
 export default function RoomList({ rooms }) {
   return (
     <Div>
-      <Title1>React Chat</Title1>
+      <Title1>Smack</Title1>
       <ul>
         {rooms.map((room, index) => {
           return (
