@@ -1,5 +1,26 @@
 import styled, { css } from "styled-components";
 
+export const Title1 = styled.h1`
+  font-family: "Karla", sans-serif;
+  color: #fff;
+  font-weight: 600;
+`;
+
+export const Li = styled.li`
+  font-family: "Karla", sans-serif;
+  font-weight: 300;
+  color: #fff;
+  text-decoration: none;
+  list-style: none;
+  padding: 0.2em 0;
+`;
+
+export const Text = styled.p`
+  font-family: "Karla", sans-serif;
+  color: ${props => props.color};
+  margin: ${props => props.margin || ".5em 0"};
+`;
+
 export const Wrapper = styled.div`
   display: grid;
   height: 100%;

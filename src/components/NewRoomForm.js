@@ -20,6 +20,8 @@ const Input = styled.input`
   background: #fff;
   border: 0;
   outline: none;
+  font-weight: 200;
+  font-family: "Karla", sans-serif;
 `;
 
 const Button = styled.button`

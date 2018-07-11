@@ -5,7 +5,7 @@ const Div = styled.div`
   grid-area: f;
   height: 100%;
   width: 100%;
-  background-color: #f6f6f6;
+  background-color: #ddd;
   display: flex;
   align-items: center;
 `;
@@ -16,8 +16,9 @@ const Input = styled.input`
   padding: 15px 10px;
   margin: 0;
   border-style: none;
-  background: #f6f6f6;
+  background: #ddd;
   font-weight: 200;
+  font-family: "Karla", sans-serif;
   &:focus {
     outline: none;
   }
@@ -60,7 +61,7 @@ class SendMessageForm extends Component {
             onChange={this.handleChange}
             type="text"
             value={this.state.val}
-            placeholder="Send message..."
+            placeholder="Type a message and click ENTER..."
           />
         </form>
       </Div>
