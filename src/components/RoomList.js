@@ -17,14 +17,19 @@ const I = styled.i`
   margin-right: 0.5em;
 `;
 
-export default function RoomList({ rooms }) {
+const Ul = styled.ul`
+  padding: 0;
+`;
+
+export default function RoomList({ rooms, subscribetoroom }) {
   return (
     <Div>
       <Title1>Smack</Title1>
-      <ul>
+      <Ul>
         {rooms.map((room, index) => {
           return (
             <div
+              key={index}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -32,11 +37,20 @@ export default function RoomList({ rooms }) {
               }}
             >
               <I className="fab fa-react" />
-              <Li key={index}>{room.name}</Li>
+              <Li>
+                <a
+                  onClick={() => {
+                    subscribetoroom(room.id);
+                  }}
+                  href="#"
+                >
+                  {room.name}
+                </a>
+              </Li>
             </div>
           );
         })}
-      </ul>
+      </Ul>
     </Div>
   );
 }
