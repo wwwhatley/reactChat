@@ -13,7 +13,6 @@ const Div = styled.div`
 
 const I = styled.i`
   font-size: 1.6em;
-  color: #fff;
   margin-right: 0.5em;
 `;
 
@@ -21,33 +20,36 @@ const Ul = styled.ul`
   padding: 0;
 `;
 
-export default function RoomList({ rooms, subscribetoroom }) {
+const StyledDiv = styled.div`
+  color: ${props => props.color};
+  display: flex;
+  align-items: center;
+  margin: 0.5em 0;
+`;
+
+const A = styled.a``;
+
+export default function RoomList({ rooms, subscribetoroom, roomid }) {
+  const orderedRooms = [...rooms].sort((a, b) => a.id - b.id);
   return (
     <Div>
       <Title1>Smack</Title1>
       <Ul>
-        {rooms.map((room, index) => {
+        {orderedRooms.map((room, index) => {
           return (
-            <div
-              key={index}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                margin: ".5em 0"
-              }}
-            >
+            <StyledDiv key={index} color={roomid === room.id ? "#fff" : "#ccc"}>
               <I className="fab fa-react" />
               <Li>
-                <a
+                <A
                   onClick={() => {
                     subscribetoroom(room.id);
                   }}
                   href="#"
                 >
                   {room.name}
-                </a>
+                </A>
               </Li>
-            </div>
+            </StyledDiv>
           );
         })}
       </Ul>

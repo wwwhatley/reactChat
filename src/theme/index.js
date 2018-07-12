@@ -9,7 +9,6 @@ export const Title1 = styled.h1`
 export const Li = styled.li`
   font-family: "Karla", sans-serif;
   font-weight: 300;
-  color: #fff;
   text-decoration: none;
   list-style: none;
   padding: 0.2em 0;

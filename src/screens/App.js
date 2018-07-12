@@ -85,6 +85,7 @@ class App extends Component {
     return (
       <Wrapper>
         <RoomList
+          roomid={this.state.roomId}
           subscribetoroom={this.subscribeToRoom}
           rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
         />
