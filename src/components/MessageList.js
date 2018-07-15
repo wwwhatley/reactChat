@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
 import Message from "./Message";
 
@@ -11,14 +12,35 @@ const Div = styled.div`
   overflow: scroll;
 `;
 
-export default function MessageList({ messages }) {
-  return (
-    <Div>
-      {messages.map((message, index) => {
-        return (
-          <Message key={index} userid={message.senderId} text={message.text} />
-        );
-      })}
-    </Div>
-  );
+class MessageList extends Component {
+  componentWillUpdate() {
+    const node = ReactDOM.findDOMNode(this);
+    this.shouldScrollToBottom =
+      node.scrollTop + node.clientHeight + 100 >= node.scrollHeight;
+  }
+
+  componentDidUpdate() {
+    if (this.shouldScrollToBottom) {
+      const node = ReactDOM.findDOMNode(this);
+      node.scrollTop = node.scrollHeight;
+    }
+  }
+  render() {
+    const { messages } = this.props;
+    return (
+      <Div>
+        {messages.map((message, index) => {
+          return (
+            <Message
+              key={index}
+              userid={message.senderId}
+              text={message.text}
+            />
+          );
+        })}
+      </Div>
+    );
+  }
 }
+
+export default MessageList;
