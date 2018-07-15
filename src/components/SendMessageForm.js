@@ -58,6 +58,7 @@ class SendMessageForm extends Component {
       <Div>
         <form onSubmit={this.onSubmit}>
           <Input
+            disabled={this.props.disabled}
             onChange={this.handleChange}
             type="text"
             value={this.state.val}

@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Title1 = styled.h1`
   font-family: "Karla", sans-serif;
-  color: #fff;
+  color: ${props => props.color || "#fff"};
   font-weight: 600;
 `;
 
